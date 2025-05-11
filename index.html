@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1261470977309671525/1371044451056619540/download_2.jpg?ex=6821b425&is=682062a5&hm=941f7de90e854ca17c642d778c3883ff8b44a82f756dd4ff81f9801159d02a35&">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ari Gibson Milk Fund</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0bf8ec31;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 600px;
+            width: 90%;
+            background-color: rgb(255, 255, 255);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            margin-top: 10px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+        }
+        a {
+            display: inline-block;
+            margin-top: 12px;
+            color: #007acc;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #007acc;
+            color: white;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* MILK LORE LINK */
+        .milk-lore-link {
+            font-size: 12px;
+            color: transparent;
+            text-decoration: none;
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s, bottom 0.5s, right 0.5s;
+        }
+
+        /* MILK LORE VISIBILITY */
+        .show-link .milk-lore-link {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* MORE MILK LORE STUFF */
+        .hint-button {
+            font-size: 16px;
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 12px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .hint-button:hover {
+            background-color: #007acc;
+            color: white;
+        }
+
+        /* RESPONSIVE STYLES */
+        @media screen and (max-width: 768px) {
+            .container {
+                max-width: 90%;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 16px;
+            }
+            a {
+                padding: 10px 16px;
+            }
+            .hint-button {
+                padding: 10px 16px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ari Gibson Needs Milk</h1>
+        <p>Ari Gibson, co-creator of Team Cherry, requires milk to live. Following a recent procedure in which certain parts of his body were replaced with robotic components, he now relies on the carbohydrates found in milk to support the functionality of these robotic systems. Please donate below.</p>
+        <a href="https://www.reddit.com/r/Silksong/comments/1ivdkxm/the_new_bait_used_to_be_believable_has_come/" target="_blank">CLICK TO DONATE NOW</a>
+        <img src="https://cdn.discordapp.com/attachments/1261470977309671525/1371020767394926622/ari-gibson-co-founder-of-gamedev-studio-team-cherry-found-v0-3eymg2rp8gwd1.webp?ex=68219e17&is=68204c97&hm=37ffba38d3472fb790d23a76cb7312a9bc7c6fb7e71e8dce5567dc0b8831bfe1&" alt="Ari Gibson">
+    </div>
+
+    <!-- Need more info? -->
+    <button class="hint-button" onclick="showMilkLore()">Need more info?</button>
+
+    <!-- MILK LORE LINK -->
+    <a href="https://docs.google.com/document/d/13bF4ea7EqJiUypeMZJjFLGC8UN90laFulqvAurp2Xqc/edit?tab=t.0" target="_blank" class="milk-lore-link">Milk Lore</a>
+
+    <script>
+        // MILK LORE FUNCTION
+        function showMilkLore() {
+            document.body.classList.add('show-link');
+        }
+    </script>
+</body>
+</html>
