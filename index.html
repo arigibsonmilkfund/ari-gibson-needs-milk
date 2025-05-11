@@ -97,7 +97,6 @@
             color: white;
         }
 
-        /* RESPONSIVE STYLES */
         @media screen and (max-width: 768px) {
             .container {
                 max-width: 90%;
@@ -117,6 +116,15 @@
             }
         }
 
+        #milk-timer {
+            font-size: 24px;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007acc;
+            color: white;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -125,6 +133,9 @@
         <p>Ari Gibson, co-creator of Team Cherry, requires milk to live. Following a recent procedure in which certain parts of his body were replaced with robotic components, he now relies on the carbohydrates found in milk to support the functionality of these robotic systems. Please donate below.</p>
         <a href="https://www.reddit.com/r/Silksong/comments/1ivdkxm/the_new_bait_used_to_be_believable_has_come/" target="_blank">CLICK TO DONATE NOW</a>
         <img src="https://cdn.discordapp.com/attachments/1261470977309671525/1371020767394926622/ari-gibson-co-founder-of-gamedev-studio-team-cherry-found-v0-3eymg2rp8gwd1.webp?ex=68219e17&is=68204c97&hm=37ffba38d3472fb790d23a76cb7312a9bc7c6fb7e71e8dce5567dc0b8831bfe1&" alt="Ari Gibson">
+        
+        <!-- MILK TIMER :))) -->
+        <div id="milk-timer">Milk Timer: 100 years, 0 months, 0 days, 0 hours, 0 minutes, 0 seconds</div>
     </div>
 
     <!-- Need more info? -->
@@ -138,6 +149,27 @@
         function showMilkLore() {
             document.body.classList.add('show-link');
         }
+
+        // 100 year countdown
+        var countdownDate = new Date().getTime() + (100 * 365 * 24 * 60 * 60 * 1000); // Set timer to 100 years from now
+        var timer = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countdownDate - now;
+
+            var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+            var months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            var days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("milk-timer").innerHTML = "Milk Timer: " + years + " years, " + months + " months, " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("milk-timer").innerHTML = "Milk";
+            }
+        }, 1000);
     </script>
 </body>
 </html>
