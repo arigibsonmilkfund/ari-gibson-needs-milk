@@ -61,7 +61,15 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* MILK LORE LINK */
+        #milk-timer {
+            font-size: 24px;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007acc;
+            color: white;
+            border-radius: 5px;
+        }
+
         .milk-lore-link {
             font-size: 12px;
             color: transparent;
@@ -74,13 +82,11 @@
             transition: opacity 0.5s, bottom 0.5s, right 0.5s;
         }
 
-        /* MILK LORE VISIBILITY */
         .show-link .milk-lore-link {
             opacity: 1;
             pointer-events: auto;
         }
 
-        /* MORE MILK LORE STUFF */
         .hint-button {
             font-size: 16px;
             background-color: #e0e0e0;
@@ -97,34 +103,6 @@
             color: white;
         }
 
-        @media screen and (max-width: 768px) {
-            .container {
-                max-width: 90%;
-                padding: 15px;
-            }
-            h1 {
-                font-size: 20px;
-            }
-            p {
-                font-size: 16px;
-            }
-            a {
-                padding: 10px 16px;
-            }
-            .hint-button {
-                padding: 10px 16px;
-            }
-        }
-
-        #milk-timer {
-            font-size: 24px;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #007acc;
-            color: white;
-            border-radius: 5px;
-        }
-
     </style>
 </head>
 <body>
@@ -134,38 +112,45 @@
         <a href="https://www.reddit.com/r/Silksong/comments/1ivdkxm/the_new_bait_used_to_be_believable_has_come/" target="_blank">CLICK TO DONATE NOW</a>
         <img src="https://cdn.discordapp.com/attachments/1261470977309671525/1371020767394926622/ari-gibson-co-founder-of-gamedev-studio-team-cherry-found-v0-3eymg2rp8gwd1.webp?ex=68219e17&is=68204c97&hm=37ffba38d3472fb790d23a76cb7312a9bc7c6fb7e71e8dce5567dc0b8831bfe1&" alt="Ari Gibson">
         
-        <!-- MILK TIMER :))) -->
         <div id="milk-timer">Milk Timer: 100 years, 0 months, 0 days, 0 hours, 0 minutes, 0 seconds</div>
     </div>
 
-    <!-- Need more info? -->
     <button class="hint-button" onclick="showMilkLore()">Need more info?</button>
 
-    <!-- MILK LORE LINK -->
     <a href="https://docs.google.com/document/d/13bF4ea7EqJiUypeMZJjFLGC8UN90laFulqvAurp2Xqc/edit?tab=t.0" target="_blank" class="milk-lore-link">Milk Lore</a>
 
     <script>
-        // MILK LORE FUNCTION
         function showMilkLore() {
             document.body.classList.add('show-link');
         }
 
-        // 100 year countdown
-        var countdownDate = new Date().getTime() + (100 * 365 * 24 * 60 * 60 * 1000); // Set timer to 100 years from now
-        var timer = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = countdownDate - now;
+        const countdownDate = new Date();
+        countdownDate.setFullYear(countdownDate.getFullYear() + 100);
 
-            var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
-            var months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
-            var days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const timer = setInterval(function() {
+            const now = new Date();
+            
+            let years = countdownDate.getFullYear() - now.getFullYear();
+            let months = countdownDate.getMonth() - now.getMonth();
+            let days = countdownDate.getDate() - now.getDate();
+            let hours = countdownDate.getHours() - now.getHours();
+            let minutes = countdownDate.getMinutes() - now.getMinutes();
+            let seconds = countdownDate.getSeconds() - now.getSeconds();
 
-            document.getElementById("milk-timer").innerHTML = "Milk Timer: " + years + " years, " + months + " months, " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+            if (seconds < 0) { seconds += 60; minutes--; }
+            if (minutes < 0) { minutes += 60; hours--; }
+            if (hours < 0) { hours += 24; days--; }
+            if (days < 0) {
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += prevMonth;
+                months--;
+            }
+            if (months < 0) { months += 12; years--; }
 
-            if (distance < 0) {
+            document.getElementById("milk-timer").innerHTML = 
+                `Milk Timer: ${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+
+            if (years <= 0 && months <= 0 && days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
                 clearInterval(timer);
                 document.getElementById("milk-timer").innerHTML = "Milk";
             }
